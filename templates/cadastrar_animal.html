@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Animal</title>
+</head>
+
+<body>
+    <h1>Cadastrar Animal</h1>
+
+    <form>
+        {% csrf_token %}
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" placeholder="Nome">
+        <br>
+        <label for="tipo">Tipo</label>
+        <select id="tipo" nome="tipo">
+            <option value="cachorro">Cachorro</option>
+            <option value="gato">Gato</option>
+            <option value="pássaro">Pássaro</option>
+        </select>
+        <br>
+        <button onclick="enviar()">Enviar</button>
+    </form>
+    <script>
+
+
+        function enviar() {
+
+            const nome = document.getElementById('nome').value;
+            const tipo = document.getElementById('tipo');
+            const valor_tipo = tipo.options[tipo.selectedIndex].value;
+        
+            const animal = JSON.parse(`{ "nome":"'${nome}", "tipo": "'${valor_tipo}'"}`);
+            fetch('http://localhost:8000/api/animal/inserir', {
+                method: "POST",
+                body: JSON.stringify(animal),
+                headers: { "Content-type": "application/json; charset=UTF-8" }
+            })
+                .then(response => response.json())
+                .then(json => console.log(json))
+                .catch(err => console.log(err));
+
+
+        }
+    </script>
+
+</body>
+
+</html>
