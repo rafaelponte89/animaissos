@@ -1,5 +1,6 @@
-from datetime import datetime
+from datetime import date
 from distutils.command.upload import upload
+from time import strftime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -17,16 +18,17 @@ class Animal(models.Model):
     apelido_animal = models.CharField(max_length=100,null=False,blank=False)
     img_animal = models.ImageField()
     sit_animal = models.CharField(max_length=50, choices=SITUACAO_ANIMAL)
-
+    username = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
+    
     def __str__(self):
         return f'{self.apelido_animal}' 
 
 class Campanha(models.Model):
-    data_inicial = models.DateField(auto_now=datetime.date)
+    data_inicial = models.DateField(default=(date.today()).strftime('%d/%m/%Y'), editable=False)
     data_final = models.DateField()
     titulo = models.CharField(max_length=100, null=False, blank=False)
-    finalidade = models.CharField(max_length=250, null=False,blank=False)
-    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    finalidade = models.TextField(max_length=250, null=False,blank=False)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.titulo}'
@@ -39,12 +41,11 @@ class PortoSeguro(models.Model):
         )
     latitude = models.FloatField()
     longitude= models.FloatField()
-    titulo = models.TextField(default=f'{User.email} | \
-    {latitude} | {longitude}')
+    titulo = models.CharField(max_length=200, unique=True)
     casa = models.CharField(max_length=1, choices = DISPONIVEL, verbose_name='Disponível: Casa, Água, Comida')
     protetor = models.CharField(max_length=1, choices=DISPONIVEL)
     qtd_animais = models.IntegerField(null=False, blank=False) 
-    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.latitude}{self.longitude}'

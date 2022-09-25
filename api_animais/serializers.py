@@ -1,11 +1,12 @@
-from dataclasses import fields
+
 from rest_framework import serializers
 from .models import Animal, Campanha
-
+from django.contrib.auth.models import User
 
 
 
 class AnimalSerializer(serializers.ModelSerializer):
+
 
     class Meta:
         model = Animal
@@ -15,4 +16,10 @@ class CampanhaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Campanha
-        read_only_fields = ['data_inicial','ativa']
+        fields = ('data_final','titulo','finalidade','username')
+
+class UserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ('username','password','first_name','last_name')
