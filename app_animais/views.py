@@ -1,7 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.contrib import messages
-from .forms import RegisterForm
+from django.contrib.auth.decorators import login_required
+
+from api_animais.models import Usuario
+from .forms import RegisterForm, UserUpdateForm
 # Create your views here.
 
 
@@ -17,5 +20,24 @@ def register(request):
         form = RegisterForm()
     return render(request, 'register.html',{'form':form})
 
-def login(request):
-    return render (request,'cadastrar_animal.html',{})
+def perfil(request, pk):
+    usuario = get_object_or_404(Usuario, pk=pk)
+    return render(request, 'perfil.html',{"usuario":usuario})
+
+@login_required
+def update(request):
+    if request.POST:
+        usuario = UserUpdateForm(request.POST, instance = request.user)
+        if usuario.is_valid():
+            usuario.save()
+            messages.success(request,'Informações Atualizadas!')
+            return redirect ('perfil', request.user.pk)
+    else:
+        usuario = UserUpdateForm(instance = request.user)
+        
+    context = {
+        'usuario': usuario
+    }
+
+    return render(request, 'update.html',context)
+

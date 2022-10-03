@@ -156,3 +156,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Redirecionamento padrão do projeto após o login
 
 LOGIN_REDIRECT_URL = 'index'
+LOGIN_REDIRECT = 'login'

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row pt-5">
+        <div class="col-sm-12 col-lg-3 mb-3 text-center">
+            <img src="#">
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <h1 class="font-weight-bold">{{ usuario.first_name}} {{ usuario.last_name}} </h1>
+            {% if request.user == usuario %}
+            <div class="links">
+                <a href="{% url 'update' %}" class="btn btn-sm btn-primary">Atualizar Dados</a>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content%}
