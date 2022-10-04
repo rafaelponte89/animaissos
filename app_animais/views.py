@@ -4,8 +4,21 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from api_animais.models import Usuario
-from .forms import RegisterForm, UserUpdateForm
+from .forms import CampaignRegisterForm, RegisterForm, UserUpdateForm
 # Create your views here.
+
+@login_required
+def registerCampaign(request):
+
+    if request.method == 'POST':
+        form = CampaignRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Campanha cadastrada com sucesso!")
+            return redirect('registerCampaign')
+    else:
+        form = CampaignRegisterForm()
+    return render(request, 'cadastrar_campanha.html',{'form':form})
 
 
 def register(request):

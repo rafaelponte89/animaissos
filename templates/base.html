@@ -36,22 +36,34 @@
                 <li class="nav-item">
                     <a class="nav-link text-center" href="#">Estatística <span class="sr-only">(current)</span></a>
                 </li>
- 
+
                 {% if request.user.is_authenticated %}
+
+                
                 <li class="nav-item">
-                   
-                    <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+
+                    <a href="{% url 'registerCampaign' %}" class="nav-link">Campanha</a>
                 </li>
-                <li class="nav-item">
-                    <a href="{% url 'perfil' request.user.pk %}" class="nav-link">Perfil</a>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Usuário</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'perfil' request.user.pk %}" class="nav-link">Perfil</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}" class="nav-link">Logout</a>
+                    </div>
                 </li>
+
+               
                 {% else %}
                 <li class="nav-item">
-                    <a href="{% url 'login' %}" class="nav-link active">Login</a>
+                    <a href="{% url 'login' %}" class="nav-link active">Entrar</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{% url 'register' %}" class="nav-link">Registro</a>
-                </li>                
+                </li>                 -->
                 {% endif %}
 
 
@@ -63,7 +75,7 @@
             </form>
         </div>
     </nav>
-   
+
 
     {% block content %}
 
@@ -82,7 +94,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    
+
 </body>
 
 </html>
