@@ -10,7 +10,7 @@ from django.contrib.auth.models import AbstractUser
 class Usuario(AbstractUser):
 
     username = models.CharField(max_length=50, unique=True, error_messages={
-                                'unique': 'O usuário cadastrado já existe!'})
+                                'unique': 'O usuário cadastrado já existe!'}, verbose_name = 'Usuário')
     password = models.CharField(max_length=8)
     email = models.EmailField(max_length=254, unique=True, error_messages={
                               'unique': 'O email cadastrado já existe!'})
@@ -29,12 +29,12 @@ class Animal(models.Model):
             ('A', 'ADOTADO'),
             ('L', 'LAR TEMPORÁRIO')
         )
-    apelido_animal = models.CharField(max_length=100, null=False, blank=False)
-    img_animal = models.ImageField(upload_to='fotos_animais')
+    apelido_animal = models.CharField(max_length=100, null=False, blank=False, verbose_name = 'Apelido do Animal')
+    img_animal = models.ImageField(upload_to='fotos_animais', verbose_name = 'Foto do Animal')
     # img_animal_2 = models.ImageField(upload_to='fotos_animais')
     # img_animal_3 = models.ImageField(upload_to='fotos_animais')
-    sit_animal = models.CharField(max_length=50, choices=SITUACAO_ANIMAL)
-    username = models.ForeignKey(Usuario, on_delete=models.CASCADE, default=2)
+    sit_animal = models.CharField(max_length=50, choices=SITUACAO_ANIMAL, verbose_name = 'Situação do Animal')
+    username = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.apelido_animal}'
@@ -46,7 +46,7 @@ class Campanha(models.Model):
     titulo = models.CharField(max_length=100, null=False, blank=False)
     finalidade = models.TextField(max_length=250, null=False, blank=False)
     # username = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    # animal = models.ForeignKey(Animal, on_delete = models.CASCADE)
+    animal = models.ForeignKey(Animal, on_delete = models.CASCADE)
     
     def __str__(self):
         return f'{self.titulo}'

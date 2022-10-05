@@ -1,54 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Animal</title>
-</head>
+{% block content %}
 
-<body>
-    <h1>Cadastrar Animal</h1>
+<div class="landing bg-dark">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-sm-12 col-lg-6 text-center">
+                <h1 class="text-white font-weight-bold display-3 mb-3">Animal</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container bg-light mt-n5 p-5 rounded">
+    <div class="row">
+        <div class="col-12">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+                <div clas="form-group">
+                    <button class="btn btn-outline-dark">Gravar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-    <form>
-        {% csrf_token %}
-        <label for="nome">Nome</label>
-        <input id="nome" name="nome" type="text" placeholder="Nome">
-        <br>
-        <label for="tipo">Tipo</label>
-        <select id="tipo" nome="tipo">
-            <option value="cachorro">Cachorro</option>
-            <option value="gato">Gato</option>
-            <option value="pássaro">Pássaro</option>
-        </select>
-        <br>
-        <button onclick="enviar()">Enviar</button>
-    </form>
-    <script>
-
-
-        function enviar() {
-
-            const nome = document.getElementById('nome').value;
-            const tipo = document.getElementById('tipo');
-            const valor_tipo = tipo.options[tipo.selectedIndex].value;
-        
-            const animal = JSON.parse(`{ "nome":"'${nome}", "tipo": "'${valor_tipo}'"}`);
-           
-            fetch('http://localhost:8000/api/v1/animais', {
-                method: "POST",
-                body: JSON.stringify(animal),
-                headers: { "Content-type": "application/json; charset=UTF-8" }
-            })
-                .then(response => response.json())
-                .then(json => alert(json))
-                .catch(err => console.log(err));
-
-
-        }
-    </script>
-
-</body>
-
-</html>
+{% endblock content %}

@@ -4,8 +4,24 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from api_animais.models import Usuario
-from .forms import CampaignRegisterForm, RegisterForm, UserUpdateForm
+from .forms import AnimalRegisterForm, CampaignRegisterForm, RegisterForm, UserUpdateForm
 # Create your views here.
+
+
+def registerAnimal(request):
+
+    if request.POST:
+        # user_form = RegisterForm(request.POST, instance = request.user)
+        animal_form = AnimalRegisterForm(request.POST, request.FILES )
+        if  animal_form.is_valid():
+            animal_form.save()
+            messages.success(request, "Animal criado com sucesso!")
+            return redirect('registerAnimal')
+    else:
+        animal_form = AnimalRegisterForm()
+    return render(request, 'cadastrar_animal.html',{'form': animal_form})
+
+
 
 @login_required
 def registerCampaign(request):
