@@ -3,24 +3,31 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from api_animais.models import Usuario
+from api_animais.models import Animal, Usuario
 from .forms import AnimalRegisterForm, CampaignRegisterForm, RegisterForm, UserUpdateForm
 # Create your views here.
 
+from django.views.generic import TemplateView
 
 def registerAnimal(request):
 
     if request.POST:
-        # user_form = RegisterForm(request.POST, instance = request.user)
-        animal_form = AnimalRegisterForm(request.POST, request.FILES )
+        print(request.user)
+        animal_form = AnimalRegisterForm( request.POST, request.FILES, initial={'username':request.user}  )
         if  animal_form.is_valid():
             animal_form.save()
             messages.success(request, "Animal criado com sucesso!")
             return redirect('registerAnimal')
     else:
-        animal_form = AnimalRegisterForm()
-    return render(request, 'cadastrar_animal.html',{'form': animal_form})
+        animal_form = AnimalRegisterForm( initial={'username':request.user}  )
 
+    return render(request, 'cadastrar_animal.html', {'form':animal_form})
+
+def getAnimais(request):
+
+    animais = Animal.objects.filter(username = request.user.id)
+
+    return render(request, 'listar_animais.html',{'animais':animais})
 
 
 @login_required

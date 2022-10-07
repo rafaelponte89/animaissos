@@ -1,6 +1,7 @@
 from tabnanny import verbose
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.shortcuts import render
 
 from api_animais.models import Animal, Campanha, Usuario
 # from django.contrib.auth.models import User
@@ -38,6 +39,10 @@ class AnimalRegisterForm(forms.ModelForm):
         max_length = 100, required= True
     )
     img_animal = forms.ImageField(required = True)
+    username = forms.ModelChoiceField(queryset = Usuario.objects.all(),
+                widget = forms.HiddenInput())
     class Meta:
         model = Animal
         fields = ['apelido_animal','img_animal','sit_animal','username']
+        
+    
