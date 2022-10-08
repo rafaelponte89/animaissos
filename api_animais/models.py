@@ -47,7 +47,7 @@ class Campanha(models.Model):
     titulo = models.CharField(max_length=100, null=False, blank=False)
     finalidade = models.TextField(max_length=250, null=False, blank=False)
     username = models.ForeignKey(Usuario, on_delete=models.CASCADE, default = 2)
-    #animal = models.ForeignKey(Animal, on_delete = models.CASCADE)
+    animal = models.ForeignKey(Animal, on_delete = models.CASCADE, default = 3)
     
     def __str__(self):
         return f'{self.titulo}'
@@ -61,7 +61,7 @@ class PortoSeguro(models.Model):
         )
     latitude = models.FloatField()
     longitude = models.FloatField()
-    titulo = models.CharField(max_length=200, unique=True)
+    titulo = models.CharField(max_length=100, unique=True)
     casa = models.CharField(max_length=1, choices=DISPONIVEL,
                             verbose_name='Disponível: Casa, Água, Comida')
     protetor = models.CharField(max_length=1, choices=DISPONIVEL)

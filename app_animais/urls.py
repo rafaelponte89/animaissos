@@ -1,6 +1,5 @@
 from django.urls.conf import path
-from  .views import  register, perfil, registerAnimal, registerCampaign, update, getAnimais, getCampanhas
-    
+from  .views import  register, perfil, registerAnimal, registerCampaign, update, getAnimais, getCampanhas, getCampanhasAtivas, getCampanhasEncerradas
 
 from  django.contrib.auth import views as auth_views
 
@@ -14,5 +13,9 @@ urlpatterns =[
     path('cadastrarcampanha/', registerCampaign, name='iniciar_campanha'),
     path('cadastraranimais/', registerAnimal, name = 'cadastrar_animais'),
     path('listaranimais/', getAnimais, name = 'listar_animais'),
-    path('listarcampanhas/', getCampanhas, name = 'listar_campanhas')
+    path('listarcampanhas/', getCampanhas, name = 'listar_campanhas'),
+    path('listarativas/', getCampanhasAtivas, name = 'listar_ativas'),
+    path('listarencerradas/', getCampanhasEncerradas, name = 'listar_encerradas')
+
+
 ]

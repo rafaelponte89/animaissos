@@ -2,35 +2,36 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
- Listar Animais
+ Listar
 {% endblock title %}
-
 {% block content %}
 <div class="container bg-light mt-n5 p-5 rounded">
-    <div class="row">
-        <div class="col-12">
-            {% for animal in animais %}
-                <div>
-                    Apelido: {{ animal.apelido_animal}}
+    <div class="row d-flex justify-content-center">
+        
+        {% for animal in animais %}
+        <div class="col-sm-12 col-lg-6 text-center mt-5 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/media/{{ animal.img_animal }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ animal.apelido_animal }}</h5>
+                    <p class="card-text">
+                        Situação: 
+                        {% if animal.sit_animal == 'R' %}
+                           Rua
+                        {% elif animal.sit_animal == 'L' %}
+                           Lar Temporário
+                        {% elif animal.sit_animal == 'T' %}
+                            Tratamento
+                        {% elif animal.sit_animal == 'A' %}
+                            Adotado
+                        {% endif %}</p>
+        
+                    <a href="#" class="btn btn-primary">Acessar Animal</a>
                 </div>
-                <div>
-                    Situação: 
-                    {% if animal.sit_animal == 'R' %}
-                       Rua
-                    {% elif animal.sit_animal == 'L' %}
-                       Lar Temporário
-                    {% elif animal.sit_animal == 'T' %}
-                        Tratamento
-                    {% elif animal.sit_animal == 'A' %}
-                        Adotado
-                    {% endif %}
-
-                </div>
-                <div>
-                    <img src="/media/{{ animal.img_animal }}">
-                </div>
-            {% endfor %}
+            </div>
         </div>
+        {% endfor %}
+
     </div>
 </div>
 

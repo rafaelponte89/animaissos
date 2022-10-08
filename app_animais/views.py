@@ -20,7 +20,7 @@ def registerAnimal(request):
         if  animal_form.is_valid():
             animal_form.save()
             messages.success(request, "Animal criado com sucesso!")
-            return redirect('registerAnimal')
+            return redirect('cadastrar_animais')
     else:
         animal_form = AnimalRegisterForm( initial={'username':request.user}  )
 
@@ -37,20 +37,42 @@ def getAnimais(request):
 def registerCampaign(request):
     data = (date.today()).strftime('%d/%m/%Y')
     if request.method == 'POST':
-        form = CampaignRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
+        # form_animal = AnimalRegisterForm(request.POST, request.FILES)
+        form_campanha = CampaignRegisterForm(request.POST)
+        if form_campanha.is_valid():
+            form_campanha.save()
+            # form_animal.save()
             messages.success(request, "Campanha cadastrada com sucesso!")
             return redirect('iniciar_campanha')
     else:
-        form = CampaignRegisterForm(initial = {'username': request.user})
-    return render(request, 'cadastrar_campanha.html',{'form':form,'data_inicial':data})
+        form_campanha = CampaignRegisterForm(initial = {'username': request.user})
+        # form_animal = AnimalRegisterForm(initial = {'username':request.user})
+    
+    contexto = {
+        'form_campanha': form_campanha,
+        # 'form_animal': form_animal,
+        'data_inicial': data
+    }
+    return render(request, 'cadastrar_campanha.html',contexto)
 
 def getCampanhas (request):
 
     campanhas = Campanha.objects.filter(username = request.user.id)
+    
+    return render(request,'listar_campanhas.html',{'campanhas':campanhas})
+
+def getCampanhasAtivas(request):
+    campanhas = Campanha.objects.filter(data_final = None).filter(username = request.user)
+                        
+    return render(request,'listar_campanhas.html',{'campanhas':campanhas})
+
+
+def getCampanhasEncerradas(request):
+    campanhas = Campanha.objects.exclude(data_final = None ).filter( username = request.user)
 
     return render(request,'listar_campanhas.html',{'campanhas':campanhas})
+
+
 
 def register(request):
 
@@ -84,4 +106,5 @@ def update(request):
     }
 
     return render(request, 'update.html',context)
+
 

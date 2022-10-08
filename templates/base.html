@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-center" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-center" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-center" href="#">API <span class="sr-only">(current)</span></a>
@@ -43,8 +43,12 @@
                         aria-haspopup="true" aria-expanded="false">Campanhas</a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item nav-link text-center" href="{% url 'iniciar_campanha' %}">Iniciar</a>
+                        <a class="dropdown-item text-center" href="{% url 'listar_ativas' %}"
+                        >Ativas</a>
+                        <a class="dropdown-item text-center" href="{% url 'listar_encerradas' %}"
+                        >Encerradas</a>
                         <a class="dropdown-item text-center" href="{% url 'listar_campanhas' %}"
-                        >Minhas Campahas</a>
+                        >Todas</a>
                     </div>
                 </li>
 

@@ -2,5 +2,27 @@
 
 
 {% block content %}
-    <h1> Olá sou Animassos</h1>
-{% endblock %}
+<div class="container bg-light mt-n5 p-5 rounded">
+    <div class="row d-flex justify-content-center">
+        
+        {% for campanha in campanhas %}
+        <div class="col-sm-12 col-lg-6 text-center mt-5 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="/media/{{ campanha.animal.img_animal }}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ campanha.titulo }}</h5>
+                    <p class="card-text">{{ campanha.finalidade }}</p>
+                    <p class="card-text">Início: {{ campanha.data_inicial }}</p>
+                    {% if campanha.data_final == None %}
+                    <p class="card-text bg-success text-white rounded">Campanha Ativa</p>
+                    {% endif %}
+                    <a href="#" class="btn btn-primary">Acessar Campanha</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock content %}

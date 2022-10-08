@@ -7,7 +7,7 @@ from api_animais.models import Animal, Campanha, Usuario
 # from django.contrib.auth.models import User
 from api_animais.models import Usuario
 class RegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=50, required=True,)
+    first_name = forms.CharField(max_length = 50, required=True,)
     last_name = forms.CharField(max_length = 50, required = True, )
     email = forms.EmailField(required = True)
 
@@ -26,15 +26,17 @@ class UserUpdateForm(forms.ModelForm):
 
 class CampaignRegisterForm(forms.ModelForm):
     #data_final = forms.DateField(required = True, widget = forms.NumberInput(attrs={'type':'date'}))
-    titulo = forms.CharField(max_length = 150, required = True)
+    titulo = forms.CharField(max_length = 100, required = True)
     finalidade = forms.CharField(max_length= 300, required = True, widget=forms.Textarea(attrs={'rows':3,'maxlength':250}))
     
     username = forms.ModelChoiceField(queryset = Usuario.objects.all(),
                 widget = forms.HiddenInput())
+    
+    animal = forms.ModelChoiceField(queryset = Animal.objects.all())
 
     class Meta:
         model = Campanha
-        fields = ['titulo','finalidade','username']
+        fields = ['titulo','finalidade','animal','username']
 
 class AnimalRegisterForm(forms.ModelForm):
     apelido_animal = forms.CharField(

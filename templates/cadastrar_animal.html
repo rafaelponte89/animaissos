@@ -18,8 +18,20 @@
                     <button class="btn btn-outline-dark">Gravar</button>
                 </div>
             </form>
+            <img id="preview" src="">
         </div>
     </div>
 </div>
-
+<script>
+    function readImage(){
+        if (this.files && this.files[0]) {
+            var file = new FileReader();
+            file.onload = function(e) {
+                document.getElementById("preview").src = e.target.result;
+            };
+            file.readAsDataURL(this.files[0]);
+        }
+    }
+    document.getElementById("id_img_animal").addEventListener("change",readImage,false);
+</script>
 {% endblock content %}
