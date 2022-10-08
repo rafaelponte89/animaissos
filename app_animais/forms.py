@@ -22,17 +22,19 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ['email','username','first_name','last_name']
+        fields = ['email','first_name','last_name','username']
 
 class CampaignRegisterForm(forms.ModelForm):
-    data_inicial = forms.DateField(required = True, widget = forms.NumberInput(attrs={'type':'date'}))
-    data_final = forms.DateField(required = True, widget = forms.NumberInput(attrs={'type':'date'}))
+    #data_final = forms.DateField(required = True, widget = forms.NumberInput(attrs={'type':'date'}))
     titulo = forms.CharField(max_length = 150, required = True)
     finalidade = forms.CharField(max_length= 300, required = True, widget=forms.Textarea(attrs={'rows':3,'maxlength':250}))
     
+    username = forms.ModelChoiceField(queryset = Usuario.objects.all(),
+                widget = forms.HiddenInput())
+
     class Meta:
         model = Campanha
-        fields = ['data_inicial','data_final','titulo','finalidade']
+        fields = ['titulo','finalidade','username']
 
 class AnimalRegisterForm(forms.ModelForm):
     apelido_animal = forms.CharField(

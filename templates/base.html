@@ -2,7 +2,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -38,28 +38,51 @@
                 </li>
 
                 {% if request.user.is_authenticated %}
-
-                
-                <li class="nav-item">
-
-                    <a href="{% url 'registerCampaign' %}" class="nav-link">Campanha</a>
-                </li>
-
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">Usuário</a>
+                    <a class="nav-link dropdown-toggle text-center" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Campanhas</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{% url 'perfil' request.user.pk %}" class="nav-link">Perfil</a>
-
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'logout' %}" class="nav-link">Logout</a>
+                        <a class="dropdown-item nav-link text-center" href="{% url 'iniciar_campanha' %}">Iniciar</a>
+                        <a class="dropdown-item text-center" href="{% url 'listar_campanhas' %}"
+                        >Minhas Campahas</a>
                     </div>
                 </li>
 
-               
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-center" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Animais</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item text-center" href="{% url 'cadastrar_animais' %}"
+                            >Cadastrar</a>
+                        <a class="dropdown-item text-center" href="{% url 'listar_animais' %}"
+                        >Meus Animais</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-center" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Usuário</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item text-center" href="{% url 'perfil' request.user.pk %}"
+                            class="nav-link">{{ request.user.email }}</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-center" href="{% url 'logout' %}" class="nav-link">Sair</a>
+                    </div>
+                </li>
+
+
                 {% else %}
-                <li class="nav-item">
-                    <a href="{% url 'login' %}" class="nav-link active">Entrar</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-center" data-toggle="dropdown" href="#" role="button"
+                        aria-haspopup="true" aria-expanded="false">Usuário</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item text-center" href="{% url 'register'%}"
+                            class="nav-link">Novo</a>
+
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-center" href="{% url 'login' %}" >Entrar</a>
+                    </div>
                 </li>
                 <!-- <li class="nav-item">
                     <a href="{% url 'register' %}" class="nav-link">Registro</a>
@@ -75,6 +98,17 @@
             </form>
         </div>
     </nav>
+
+    <div class="landing bg-dark">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-sm-12 col-lg-6 text-center">
+                    <h1 class="text-white font-weight-bold display-3 mb-3">{% block title %} {% endblock title%}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 
 
     {% block content %}

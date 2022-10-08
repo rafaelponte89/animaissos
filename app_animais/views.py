@@ -3,12 +3,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from api_animais.models import Animal, Usuario
+from api_animais.models import Animal, Campanha, Usuario
 from .forms import AnimalRegisterForm, CampaignRegisterForm, RegisterForm, UserUpdateForm
 # Create your views here.
 
 from django.views.generic import TemplateView
 
+from datetime import date
+
+@login_required
 def registerAnimal(request):
 
     if request.POST:
@@ -30,19 +33,24 @@ def getAnimais(request):
     return render(request, 'listar_animais.html',{'animais':animais})
 
 
-@login_required
-def registerCampaign(request):
 
+def registerCampaign(request):
+    data = (date.today()).strftime('%d/%m/%Y')
     if request.method == 'POST':
         form = CampaignRegisterForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, "Campanha cadastrada com sucesso!")
-            return redirect('registerCampaign')
+            return redirect('iniciar_campanha')
     else:
-        form = CampaignRegisterForm()
-    return render(request, 'cadastrar_campanha.html',{'form':form})
+        form = CampaignRegisterForm(initial = {'username': request.user})
+    return render(request, 'cadastrar_campanha.html',{'form':form,'data_inicial':data})
 
+def getCampanhas (request):
+
+    campanhas = Campanha.objects.filter(username = request.user.id)
+
+    return render(request,'listar_campanhas.html',{'campanhas':campanhas})
 
 def register(request):
 

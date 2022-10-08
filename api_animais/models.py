@@ -1,5 +1,6 @@
 from datetime import date
 from distutils.command.upload import upload
+from email.policy import default
 from  django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -42,10 +43,10 @@ class Animal(models.Model):
 
 class Campanha(models.Model):
     data_inicial = models.DateField(default=(date.today()))
-    data_final = models.DateField()
+    data_final = models.DateField(null=True, blank = True)
     titulo = models.CharField(max_length=100, null=False, blank=False)
     finalidade = models.TextField(max_length=250, null=False, blank=False)
-    # username = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    username = models.ForeignKey(Usuario, on_delete=models.CASCADE, default = 2)
     #animal = models.ForeignKey(Animal, on_delete = models.CASCADE)
     
     def __str__(self):
