@@ -25,13 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = environ.get('SECRET_KEY', default='hk3#=euo%e__ij)0p34(50-&y+4d9h&=ly6yd73*mi^*+m=bx)')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in environ
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rafaelponte.pythonanywhere.com','localhost']
 
-RENDER_EXTERNAL_HOSTNAME = environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME: 
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 

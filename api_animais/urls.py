@@ -4,6 +4,7 @@ from django.conf import settings
 
 from rest_framework.routers import SimpleRouter
 from .views import AnimalViewSet,CampanhaViewSet, UsuarioViewSet
+from .views import ListaUsuarios
 
 router = SimpleRouter()
 

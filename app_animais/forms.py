@@ -49,4 +49,3 @@ class AnimalRegisterForm(forms.ModelForm):
         model = Animal
         fields = ['apelido_animal','img_animal','sit_animal','username']
         
-    

@@ -1,15 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 from api_animais.models import Animal, Campanha, Usuario
 from .forms import AnimalRegisterForm, CampaignRegisterForm, RegisterForm, UserUpdateForm
-# Create your views here.
-
 from django.views.generic import TemplateView
-
 from datetime import date
+
+# Create your views here.
 
 @login_required
 def registerAnimal(request):
@@ -26,13 +23,26 @@ def registerAnimal(request):
 
     return render(request, 'cadastrar_animal.html', {'form':animal_form})
 
+@login_required
+def updateAnimal(request, pk):
+    # animal = get_object_or_404(Animal, pk=pk)
+    animal = Animal.objects.filter(username = request.user).get(pk = pk)
+    if request.POST:
+        animal_form = AnimalRegisterForm( request.POST, request.FILES, instance = animal)
+        if  animal_form.is_valid():
+            animal_form.save()
+            messages.success(request, "Animal atualizado com sucesso!")
+            return redirect('listar_animais')
+    else:
+        animal_form = AnimalRegisterForm( instance = animal )
+
+    return render(request, 'cadastrar_animal.html', {'form':animal_form, 'animal':animal})
+
 def getAnimais(request):
 
     animais = Animal.objects.filter(username = request.user.id)
 
     return render(request, 'listar_animais.html',{'animais':animais})
-
-
 
 def registerCampaign(request):
     data = (date.today()).strftime('%d/%m/%Y')
@@ -88,7 +98,7 @@ def register(request):
 
 def perfil(request, pk):
     usuario = get_object_or_404(Usuario, pk=pk)
-    return render(request, 'perfil.html',{"usuario":usuario})
+    return render(request, 'perfil.html',{ "usuario": usuario })
 
 @login_required
 def update(request):

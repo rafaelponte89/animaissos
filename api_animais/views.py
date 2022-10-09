@@ -1,5 +1,3 @@
-from urllib import request
-
 
 # Create your views here.
 from rest_framework import viewsets, generics
@@ -7,17 +5,7 @@ from .models import Animal,Campanha, Usuario
 from .serializers import AnimalSerializer, \
         CampanhaSerializer, UsuarioSerializer
 
-
-
 from .permissions import AutorAlterarOuApenasLeitura
-
-from rest_framework.response import Response
-
-from rest_framework.permissions import  IsAdminUser, AllowAny
-from rest_framework import status
-
-from django.shortcuts import get_object_or_404
-
 
 class AnimalViewSet(viewsets.ModelViewSet):
     permission_classes = (AutorAlterarOuApenasLeitura,)
@@ -31,6 +19,7 @@ class CampanhaViewSet(viewsets.ModelViewSet):
     serializer_class = CampanhaSerializer
 
 class UsuarioViewSet(viewsets.ModelViewSet):
+    permission_classes = (AutorAlterarOuApenasLeitura,)
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
 
