@@ -18,14 +18,38 @@ from django.conf import settings
 from django.urls import path, include
 from django.conf.urls.static import static
 
+from django.views.generic import TemplateView
+from rest_framework.schemas import get_schema_view
 from animaissos.settings import MEDIA_URL
 from .views import index
+
+schema_url_patterns = [
+    path('api/v1/', include('api_animais.urls')),
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',index, name='index'),
-    path('', include('app_animais.urls') ),
-    path('api/v1/',include('api_animais.urls')),
-    path('api-auth/', include('rest_framework.urls'))
-] 
+    path('', index, name='index'),
+    path('', include('app_animais.urls')),
+    path('api/v1/', include('api_animais.urls')),
+    path('api-auth/', include('rest_framework.urls')),
 
-urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    # Documentação
+    path('openapi', get_schema_view(
+         title="AnimaisSOS",
+         description="API for all things …",
+         version="1.0.0",
+         patterns=schema_url_patterns
+         ), name='openapi-schema'),
+
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url': 'openapi-schema'}
+    ), name='swagger-ui'),
+
+]
+
+
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
