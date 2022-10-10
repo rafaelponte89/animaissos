@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from api_animais.models import Animal, Campanha, Usuario
-from .forms import AnimalRegisterForm, CampaignRegisterForm, RegisterForm, UserUpdateForm
+from .forms import AnimalRegisterForm, CampaignRegisterForm, RegisterForm, UserUpdateForm, PortoSeguroForm
 from django.views.generic import TemplateView
 from datetime import date
 
@@ -117,4 +117,39 @@ def update(request):
 
     return render(request, 'update.html',context)
 
+def cadastrarPortoSeguro(request):
+    
+    if request.method == "POST":  # se o método é Post
+        form = PortoSeguroForm(request.POST)  # cria um objeto do tipo Contato (forms.py)
+        if form.is_valid():  # se o formulário é válido, todos os campos requeridos estão de acordo
+           
+            form.save()  # salva informações
+            messages.success(request,'Sucesso') # menssagem de sucesso
+            return redirect('exibir_mapa')
+        else:
+            messages.error(request,'Algo saiu errado')
+    else:
+        form = PortoSeguroForm(initial={'username':request.user})
+        
 
+    # #pontos = Ponto.objects.filter(bairro=bairro).only('id')
+    # pontos = Ponto.objects.all()
+    # print(pontos)
+
+    # estrutura=''
+
+    # for p in pontos:
+    #     estrutura = estrutura + '{'+"\"trajeto\""+':\"'+ str(p.des) +'\",' \
+    #                +"\"lat\""+':\"'+ str(p.lat)+'\",' \
+    #                +"\"long\""+':\"'+ str(p.lon)+ '\",' \
+    #                +"\"hr\""+':\"'+ str(p.hr)+ '\",' \
+    #                +"\"min\""+':\"'+ str(p.mn)+ '\"},' \
+                    
+
+    # varios='{"pontos":[' + estrutura + ']}'
+
+    # print(varios)
+    # estrutura = estrutura[:len(estrutura)-1]
+
+    # return render(request, 'mapa.html', {'mapa':varios,'form':form, 'bairro':bairro})
+    return render(request, 'mapa.html',{ 'form': form })

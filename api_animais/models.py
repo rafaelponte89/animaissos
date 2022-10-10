@@ -66,7 +66,7 @@ class PortoSeguro(models.Model):
                             verbose_name='Disponível: Casa, Água, Comida')
     protetor = models.CharField(max_length=1, choices=DISPONIVEL)
     qtd_animais = models.IntegerField(null=False, blank=False)
-    username = models.ForeignKey(Usuario, on_delete=models.CASCADE, editable = False)
+    username = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.latitude}{self.longitude}'
