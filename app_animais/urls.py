@@ -1,8 +1,8 @@
 from django.urls.conf import path
-from .views import cadastrarPortoSeguro, register, perfil, registerAnimal, \
-                registerCampaign, update, getAnimais, \
-                getCampanhas, getCampanhasAtivas, getCampanhasEncerradas, updateAnimal \
-                    
+from .views import cadastrarPortoSeguro, encerrarCampanha, exibirMapa, register, perfil, registerAnimal, \
+    registerCampaign, update, getAnimais, \
+    getCampanhas, getCampanhasAtivas, getCampanhasEncerradas, updateAnimal \
+
 
 from django.contrib.auth import views as auth_views
 
@@ -19,15 +19,18 @@ urlpatterns = [
     # Animal
     path('animal/cadastrar/', registerAnimal, name='cadastrar_animais'),
     path('animal/listar/', getAnimais, name='listar_animais'),
-    path('animal/listar/<int:pk>', updateAnimal, name = 'atualizar_animais'),
+    path('animal/listar/<int:pk>', updateAnimal, name='atualizar_animais'),
 
     # Campanha
     path('campanha/iniciar/', registerCampaign, name='iniciar_campanha'),
     path('campanha/listar/', getCampanhas, name='listar_campanhas'),
     path('campanha/ativa/', getCampanhasAtivas, name='listar_ativas'),
+    path('campanha/ativa/<int:pk>', encerrarCampanha, name='encerrar_ativas'),
+
     path('campanha/encerrada/', getCampanhasEncerradas, name='listar_encerradas'),
 
     # Mapa
-    path('mapa/exibir/', cadastrarPortoSeguro, name='exibir_mapa')
+    path('mapa/cadastrar/', cadastrarPortoSeguro, name='cadastrar_ponto'),
+    path('mapa/exibir/', exibirMapa, name='exibir_mapa')
 
 ]

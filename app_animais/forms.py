@@ -71,7 +71,7 @@ class PortoSeguroForm(forms.ModelForm):
     titulo = forms.CharField(max_length=100, required=True)
     casa = forms.SelectMultiple( choices=DISPONIVEL)
     protetor = forms.SelectMultiple(choices=DISPONIVEL)
-    qtd_animais = forms.IntegerField(required = True)
+    qtd_animais = forms.IntegerField(required = True, min_value= 0, max_value = 30, help_text='Quantidade de animais de 0 a 30')
     username = forms.ModelChoiceField(queryset = Usuario.objects.all(),
                 widget = forms.HiddenInput())
     

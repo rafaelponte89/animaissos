@@ -20,11 +20,12 @@ Listar Campanhas
                     <p class="card-text">Fim: {{ campanha.data_final }}</p>
                     {% if campanha.data_final == None %}
                     <p class="card-text bg-success text-white rounded">Campanha Ativa</p>
+                    <a href="{% url 'encerrar_ativas' campanha.id %}" class="btn btn-danger">Encerrar Campanha</a>
 
                     {% else %}
                     <p class="card-text bg-danger text-white rounded">Campanha Encerrada</p>
                     {% endif %}
-                    <a href="#" class="btn btn-primary">Acessar Campanha</a>
+                    
                 </div>
             </div>
         </div>

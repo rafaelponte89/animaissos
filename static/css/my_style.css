@@ -5,6 +5,8 @@ a:hover {
     font-weight: bolder;
     border-radius: 5px;
     border-style: solid;
+    border-left: 2px;
+    border-right: 2px;
     border-color: darkcyan;
 
 }

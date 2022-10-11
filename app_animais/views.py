@@ -44,6 +44,15 @@ def getAnimais(request):
 
     return render(request, 'listar_animais.html',{'animais':animais})
 
+
+def encerrarCampanha(request, pk):
+    campanha = Campanha.objects.filter(username = request.user).get(pk = pk)
+    campanha.data_final = date.today()
+    campanha.save()
+   
+    return redirect('listar_ativas')
+
+
 def registerCampaign(request):
     data = (date.today()).strftime('%d/%m/%Y')
     if request.method == 'POST':
@@ -116,6 +125,10 @@ def update(request):
     }
 
     return render(request, 'update.html',context)
+
+
+def exibirMapa(request):
+    return render(request,'mapa_exibir.html')
 
 def cadastrarPortoSeguro(request):
     
