@@ -15,7 +15,7 @@ Listar Campanhas
                 <img class="card-img-top" src="/media/{{ campanha.animal.img_animal }}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{ campanha.titulo }}</h5>
-                    <p class="card-text">{{ campanha.finalidade }}</p>
+                    <p class="card-text">{{ campanha.informacoes }}</p>
                     <p class="card-text">Início: {{ campanha.data_inicial }}</p>
                     <p class="card-text">Fim: {{ campanha.data_final }}</p>
                     {% if campanha.data_final == None %}

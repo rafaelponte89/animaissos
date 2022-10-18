@@ -41,7 +41,9 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="deletarPonto()" >Esquecer</button>
+
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="deletarPonto()">Esquecer</button>
         <button type="button" class="btn btn-primary" onclick="gravarPonto()">Gravar</button>
       </div>
     </div>
@@ -76,7 +78,7 @@ Janela Modal
 
 
 
-<!-- <div id="coord">{{ mapa }}</div> -->
+<div id="coord">{{ mapa }}</div>
 
 <div id="map"></div>
 
@@ -84,5 +86,9 @@ Janela Modal
 {% endblock content %}
 
 {% block script_footer %}
-<script src="{% static 'js/mapa.js' %}"></script>
+<script src="{% static 'js/exibir_mapa.js' %}"></script>
+<script src="{% static 'js/exibir_pontos_mapa.js' %}"></script>
+<script src="{% static 'js/limpar_campos.js' %}"></script>
+<script src="{% static 'js/manipular_pontos_mapa.js' %}"></script>
+
 {% endblock %}

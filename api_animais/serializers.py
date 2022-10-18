@@ -13,7 +13,7 @@ class CampanhaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Campanha
-        fields = ('data_inicial','data_final','titulo','finalidade','username')
+        fields = ('data_inicial','data_final','titulo','informacoes','username')
 
 class UsuarioSerializer(serializers.ModelSerializer):
 

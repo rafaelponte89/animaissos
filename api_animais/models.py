@@ -46,8 +46,9 @@ class Campanha(models.Model):
     data_inicial = models.DateField(default=(date.today()))
     data_final = models.DateField(null=True, blank = True)
     titulo = models.CharField(max_length=100, null=False, blank=False)
-    finalidade = models.TextField(max_length=250, null=False, blank=False)
+    informacoes = models.TextField(max_length=250, null=False, blank=False)
     username = models.ForeignKey(Usuario, on_delete=models.CASCADE, default = 2)
+    
     animal = models.ForeignKey(Animal, on_delete = models.CASCADE, default = 3)
     
     def __str__(self):

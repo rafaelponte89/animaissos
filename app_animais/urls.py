@@ -1,5 +1,5 @@
 from django.urls.conf import path
-from .views import cadastrarPortoSeguro, encerrarCampanha, exibirMapa, register, perfil, registerAnimal, \
+from .views import cadastrarPortoSeguro, carregarPortoSeguro, encerrarCampanha, register, perfil, registerAnimal, \
     registerCampaign, update, getAnimais, \
     getCampanhas, getCampanhasAtivas, getCampanhasEncerradas, updateAnimal \
 
@@ -31,6 +31,6 @@ urlpatterns = [
 
     # Mapa
     path('mapa/cadastrar/', cadastrarPortoSeguro, name='cadastrar_ponto'),
-    path('mapa/exibir/', exibirMapa, name='exibir_mapa')
+    path('mapa/exibir/', carregarPortoSeguro, name='exibir_mapa')
 
 ]

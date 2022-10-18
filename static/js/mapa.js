@@ -31,27 +31,27 @@ mapao.on("dblclick", function (event) {
     alert("Somente é possível " + item.length + " coordenada(s) por vez!")
   }
 
-  
+
 });
 
 //mostra coordenadas sobre o mapa no formato lat, long como entradas somente leitura
-function mostrarCoordenadas(){
-// //  var entradas = "";
-// //  for (i=0; i<item.length; i++){
-// //      let lat =item[i]._latlng.lat.toString();
-// //      let lon = item[i]._latlng.lng.toString();
-// //      entradas = entradas + "<input type='text' value="+lat+" name='coords"+ lat +"' readonly/>";
-// //      entradas = entradas + "<input type='text' value="+lon+" name='coords"+ lon+"' readonly/>";
-// //      entradas = entradas +"<input type='text' name='descCoords"+ i.toString()+"' placeholder='Endereço do Ponto'/> <br>";
-// // 		  console.log(item[i]._latlng);
-// //  }
-// //
-// //  coordenadas.innerHTML = entradas + "<input type='submit'>";
-  for (i=0; i<item.length; i++) {
-       let lat = item[i]._latlng.lat.toString();
-       let lon = item[i]._latlng.lng.toString();
-       latitude.value=lat;
-       longitude.value=lon;
+function mostrarCoordenadas() {
+  // //  var entradas = "";
+  // //  for (i=0; i<item.length; i++){
+  // //      let lat =item[i]._latlng.lat.toString();
+  // //      let lon = item[i]._latlng.lng.toString();
+  // //      entradas = entradas + "<input type='text' value="+lat+" name='coords"+ lat +"' readonly/>";
+  // //      entradas = entradas + "<input type='text' value="+lon+" name='coords"+ lon+"' readonly/>";
+  // //      entradas = entradas +"<input type='text' name='descCoords"+ i.toString()+"' placeholder='Endereço do Ponto'/> <br>";
+  // // 		  console.log(item[i]._latlng);
+  // //  }
+  // //
+  // //  coordenadas.innerHTML = entradas + "<input type='submit'>";
+  for (i = 0; i < item.length; i++) {
+    let lat = item[i]._latlng.lat.toString();
+    let lon = item[i]._latlng.lng.toString();
+    latitude.value = lat;
+    longitude.value = lon;
   }
 
 
@@ -60,11 +60,11 @@ function mostrarCoordenadas(){
 // // Deleta primeira coordenada do mapa
 function deletarPonto() {
 
-  if (item.length !== 0){
-     mapao.removeLayer(item.shift());
-     mostrarCoordenadas();
+  if (item.length !== 0) {
+    mapao.removeLayer(item.shift());
+    mostrarCoordenadas();
     //  modalCordenada.close();
-     limparCampos();
+    limparCampos();
   }
 }
 
@@ -104,8 +104,22 @@ function deletarPonto() {
 //         }
 // }
 
+var myIcon = L.icon({
+  iconUrl: '/media/fotos_animais/house_5050.png',
+  iconSize: [50, 50],
+  iconAnchor: [50, 50],
+  popupAnchor: [-50, -76],
+});
+
+L.marker([-20.718637820756296, -47.880477905273445], { icon: myIcon }).addTo(mapao);
+var popup = L.popup()
+  .setLatLng([-20.718637820756296, -47.880477905273445])
+  .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+  .openOn(mapao);
 
 function gravarPonto() {
   document.getElementById('coordenadas').submit();
 
 }
+
+

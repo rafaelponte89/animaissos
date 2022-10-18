@@ -19,7 +19,7 @@
     border: 1px solid black;
   }
 </style>
-
+<div id="coord">{{ mapa }}</div>
 <div id="map"></div>
 
 
@@ -27,14 +27,6 @@
 
 
 {% block script_footer %}
-<script>
-  //classe central da API usada para criar o mapa
-  var mapao = L.map('map', { center: [-20.718637820756296, -47.880477905273445], zoom: 17 })
-
-
-  //carrega camadas de apresentação sobre o mapa
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(mapao);
-</script>
-{% endblock%}
+<script src="{% static 'js/exibir_mapa.js' %}"></script>
+<script src="{% static 'js/exibir_pontos_mapa.js' %}"></script>
+{% endblock %}

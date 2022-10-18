@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from api_animais.models import Animal, Campanha, Usuario
+from api_animais.models import Animal, Campanha, PortoSeguro, Usuario
 from .forms import AnimalRegisterForm, CampaignRegisterForm, RegisterForm, UserUpdateForm, PortoSeguroForm
 from django.views.generic import TemplateView
 from datetime import date
@@ -49,7 +49,6 @@ def encerrarCampanha(request, pk):
     campanha = Campanha.objects.filter(username = request.user).get(pk = pk)
     campanha.data_final = date.today()
     campanha.save()
-   
     return redirect('listar_ativas')
 
 
@@ -127,11 +126,10 @@ def update(request):
     return render(request, 'update.html',context)
 
 
-def exibirMapa(request):
-    return render(request,'mapa_exibir.html')
+
 
 def cadastrarPortoSeguro(request):
-    
+
     if request.method == "POST":  # se o método é Post
         form = PortoSeguroForm(request.POST)  # cria um objeto do tipo Contato (forms.py)
         if form.is_valid():  # se o formulário é válido, todos os campos requeridos estão de acordo
@@ -143,26 +141,27 @@ def cadastrarPortoSeguro(request):
             messages.error(request,'Algo saiu errado')
     else:
         form = PortoSeguroForm(initial={'username':request.user})
-        
-
-    # #pontos = Ponto.objects.filter(bairro=bairro).only('id')
-    # pontos = Ponto.objects.all()
-    # print(pontos)
-
-    # estrutura=''
-
-    # for p in pontos:
-    #     estrutura = estrutura + '{'+"\"trajeto\""+':\"'+ str(p.des) +'\",' \
-    #                +"\"lat\""+':\"'+ str(p.lat)+'\",' \
-    #                +"\"long\""+':\"'+ str(p.lon)+ '\",' \
-    #                +"\"hr\""+':\"'+ str(p.hr)+ '\",' \
-    #                +"\"min\""+':\"'+ str(p.mn)+ '\"},' \
-                    
-
-    # varios='{"pontos":[' + estrutura + ']}'
-
-    # print(varios)
-    # estrutura = estrutura[:len(estrutura)-1]
-
-    # return render(request, 'mapa.html', {'mapa':varios,'form':form, 'bairro':bairro})
+    
     return render(request, 'mapa.html',{ 'form': form })
+
+
+def carregarPortoSeguro(request):
+
+    pontos = PortoSeguro.objects.all()
+    print(pontos)
+    estrutura=''
+
+    for p in pontos:
+        estrutura = estrutura + '{'+"\"ponto\""+':\"'+ str(p.titulo) +'\",' \
+                   +"\"lat\""+':\"'+ str(p.latitude)+'\",' \
+                   +"\"long\""+':\"'+ str(p.longitude)+'\",' \
+                   +"\"qtd_animais\""+':\"'+ str(p.qtd_animais)+ '\"},' \
+                    
+    estrutura = estrutura.strip(',')
+   
+    varios='{"pontos":[' + estrutura + ']}'
+
+    print(varios)
+    estrutura = estrutura[:len(estrutura)-1]
+
+    return render(request, 'exibir_mapa.html', {'mapa':varios})

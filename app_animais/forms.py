@@ -33,8 +33,8 @@ class UserUpdateForm(forms.ModelForm):
 class CampaignRegisterForm(forms.ModelForm):
     # data_final = forms.DateField(required = True, widget = forms.NumberInput(attrs={'type':'date'}))
     titulo = forms.CharField(max_length=100, required=True)
-    finalidade = forms.CharField(max_length=300, required=True, widget=forms.Textarea(
-        attrs={'rows': 3, 'maxlength': 250}))
+    informacoes = forms.CharField(max_length=300, required=True, widget=forms.Textarea(
+        attrs={'rows': 3, 'maxlength': 250}), label= 'Informações')
 
     username = forms.ModelChoiceField(queryset=Usuario.objects.all(),
                 widget=forms.HiddenInput())
@@ -43,7 +43,7 @@ class CampaignRegisterForm(forms.ModelForm):
 
     class Meta:
         model = Campanha
-        fields = ['titulo', 'finalidade', 'animal', 'username']
+        fields = ['titulo', 'informacoes', 'animal', 'username']
 
 
 class AnimalRegisterForm(forms.ModelForm):
