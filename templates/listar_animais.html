@@ -27,7 +27,9 @@
                         {% endif %}</p>
                     
                     <a href="{{ animal.id }}" class="btn btn-primary">Acessar Animal</a>
-                    
+                    <a href="{% url 'iniciar_campanha' animal.id %}" class="btn btn-warning mt-2">Iniciar Campanha</a>
+                   
+
                 </div>
             </div>
         </div>

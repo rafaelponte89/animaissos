@@ -10,15 +10,32 @@ Iniciar Campanha
 <div class="container bg-light mt-n5 p-5 rounded">
     <div class="row">
         <div class="col-12">
-            
+
             <form method="POST" enctype="multipart/form-data">
                 <div id="div_id_data_inicial" class="form-group"> <label for="id_data_inicial" class=" requiredField">
-                    Início da Campanha: <span class="asteriskField">*</span> </label> <div> <label name="data_inicial" maxlength="150" class="textinput textInput form-control" required="" id="id_data_inicial"> {{ data_inicial }} </label></div> </div>
+                        Início da Campanha: <span class="asteriskField">*</span> </label>
+                    <div> <label name="data_inicial" maxlength="150" class="textinput textInput form-control"
+                            required="" id="id_data_inicial"> {{ data_inicial }} </label></div>
+                </div>
                 {% csrf_token %}
                 {{form_campanha|crispy}}
                 <!-- {{form_animal|crispy}} -->
-                <div clas="form-group">
-                    <button class="btn btn-outline-dark">Gravar</button>
+
+                <div class="col-sm-12 col-lg-4 text-center mt-5 d-flex justify-content-center">
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="/media/{{ animal.img_animal }}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ animal.apelido_animal }}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div clas="form-group">
+                            <button class="btn btn-outline-dark mt-2">Gravar</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

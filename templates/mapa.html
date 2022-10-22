@@ -19,6 +19,11 @@
     height: 800px;
     border: 1px solid black;
   }
+
+  #coord {
+    display: none;
+
+  }
 </style>
 
 
@@ -51,7 +56,7 @@
 </div>
 
 
-Janela Modal
+
 <div id="cadCoord" class="modal">
   <h4>Cadastro do Ponto</h4>
 
@@ -88,7 +93,8 @@ Janela Modal
 {% block script_footer %}
 <script src="{% static 'js/exibir_mapa.js' %}"></script>
 <script src="{% static 'js/exibir_pontos_mapa.js' %}"></script>
+{% if request.user.is_authenticated %}
 <script src="{% static 'js/limpar_campos.js' %}"></script>
 <script src="{% static 'js/manipular_pontos_mapa.js' %}"></script>
-
+{% endif %}
 {% endblock %}

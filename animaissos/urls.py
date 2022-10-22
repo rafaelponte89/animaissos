@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from rest_framework.schemas import get_schema_view
 from animaissos.settings import MEDIA_URL
+from app_animais.views import getCampanhasAtivas
 from .views import index
 
 schema_url_patterns = [

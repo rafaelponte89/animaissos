@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-Listar Campanhas
+Campanhas {{ status }}
 {% endblock title %}
 
 {% block content %}
@@ -20,8 +20,9 @@ Listar Campanhas
                     <p class="card-text">Fim: {{ campanha.data_final }}</p>
                     {% if campanha.data_final == None %}
                     <p class="card-text bg-success text-white rounded">Campanha Ativa</p>
+                    {% if request.user == campanha.username %}
                     <a href="{% url 'encerrar_ativas' campanha.id %}" class="btn btn-danger">Encerrar Campanha</a>
-
+                    {% endif %}
                     {% else %}
                     <p class="card-text bg-danger text-white rounded">Campanha Encerrada</p>
                     {% endif %}

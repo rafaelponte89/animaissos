@@ -22,7 +22,7 @@ urlpatterns = [
     path('animal/listar/<int:pk>', updateAnimal, name='atualizar_animais'),
 
     # Campanha
-    path('campanha/iniciar/', registerCampaign, name='iniciar_campanha'),
+    path('campanha/iniciar/<int:pk>', registerCampaign, name='iniciar_campanha'),
     path('campanha/listar/', getCampanhas, name='listar_campanhas'),
     path('campanha/ativa/', getCampanhasAtivas, name='listar_ativas'),
     path('campanha/ativa/<int:pk>', encerrarCampanha, name='encerrar_ativas'),
