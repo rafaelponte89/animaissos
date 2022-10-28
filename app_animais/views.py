@@ -70,12 +70,10 @@ def registerCampaign(request, pk):
         if form_campanha.is_valid():
             form_campanha.save()
             print(animal)
-            # form_animal.save()
             messages.success(request, "Campanha cadastrada com sucesso!")
             return redirect('listar_ativas')
     else:
         form_campanha = CampaignRegisterForm(initial = {'username': request.user, 'animal':animal})
-        # form_animal = AnimalRegisterForm(initial = {'username':request.user})
     
     contexto = {
         'form_campanha': form_campanha,
@@ -105,10 +103,12 @@ def getCampanhasEncerradas(request):
 
 
 def register(request):
-
+    
+    
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
+            print(form['password1'])
             form.save()
             messages.success(request,"Usuário cadastrado com sucesso!")
             return redirect('login')
