@@ -91,7 +91,7 @@ def getCampanhas (request):
 def getCampanhasAtivas(request):
 
     campanhas = Campanha.objects.filter(data_final = None).filter(username = request.user)
-
+ 
     return render(request,'listar_campanhas.html',{'campanhas':campanhas, 'status': 'Acontecendo'})
 
 

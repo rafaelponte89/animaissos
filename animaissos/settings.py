@@ -19,7 +19,6 @@ from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -31,12 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['rafaelponte.pythonanywhere.com','localhost']
 
-
-
-
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
