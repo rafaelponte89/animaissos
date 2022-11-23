@@ -1,7 +1,7 @@
 from django.urls.conf import path
 from .views import cadastrarPortoSeguro, carregarPortoSeguro, encerrarCampanha, register, perfil, registerAnimal, \
     registerCampaign, update, getAnimais, \
-    getCampanhas, getCampanhasAtivas, getCampanhasEncerradas, updateAnimal \
+    getCampanhas, getCampanhasAtivas, getCampanhasEncerradas, updateAnimal, alterarCampanha
 
 
 from django.contrib.auth import views as auth_views
@@ -10,8 +10,8 @@ from django.contrib.auth import views as auth_views
 urlpatterns = [
 
     # Usuário
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path('login/', auth_views.LoginView.as_view(template_name='usuario/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='usuario/logout.html'), name='logout'),
     path('perfil/<int:pk>', perfil, name='perfil'),
     path('perfil/update/', update, name='update'),
     path('register/', register, name='register'),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('campanha/iniciar/<int:pk>', registerCampaign, name='iniciar_campanha'),
     path('campanha/listar/', getCampanhas, name='listar_campanhas'),
     path('campanha/ativa/', getCampanhasAtivas, name='listar_ativas'),
+    path('campanha/ativa/<int:pk>', alterarCampanha, name='alterar_campanha'),
     path('campanha/ativa/<int:pk>', encerrarCampanha, name='encerrar_ativas'),
 
     path('campanha/encerrada/', getCampanhasEncerradas, name='listar_encerradas'),

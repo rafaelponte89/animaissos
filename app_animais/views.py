@@ -56,6 +56,29 @@ def encerrarCampanha(request, pk):
     campanha.save()
     return redirect('listar_ativas')
 
+def alterarCampanha(request, pk):
+
+    campanha = Campanha.objects.filter(username=request.user).get(pk=pk)
+    data = (campanha.data_inicial).strftime('%d/%m/%Y')
+    animal = campanha.animal
+    
+    if request.method == 'POST':
+        form_campanha = CampaignRegisterForm(request.POST, instance=campanha)
+
+        if form_campanha.is_valid():
+            form_campanha.save()
+            messages.success(request, "Campanha alterada com sucesso!")
+            return redirect('listar_ativas')
+    else:
+        form_campanha = CampaignRegisterForm(instance=campanha)
+    
+    contexto = {
+        'form_campanha': form_campanha,
+        'animal': animal,
+        'data_inicial': data
+    }
+    return render(request, 'cadastrar_campanha.html',contexto)
+
 
 def registerCampaign(request, pk):
     data = (date.today()).strftime('%d/%m/%Y')
@@ -114,11 +137,11 @@ def register(request):
             return redirect('login')
     else:
         form = RegisterForm()
-    return render(request, 'register.html',{'form':form})
+    return render(request, 'usuario/register.html',{'form':form})
 
 def perfil(request, pk):
     usuario = get_object_or_404(Usuario, pk=pk)
-    return render(request, 'perfil.html',{ "usuario": usuario })
+    return render(request, 'usuario/perfil.html',{ "usuario": usuario })
 
 @login_required
 def update(request):
@@ -135,7 +158,7 @@ def update(request):
         'usuario': usuario
     }
 
-    return render(request, 'update.html',context)
+    return render(request, 'usuario/update.html',context)
 
 
 

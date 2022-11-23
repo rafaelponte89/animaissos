@@ -89,12 +89,12 @@ WSGI_APPLICATION = 'animaissos.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        # 'ENGINE': config('MYSQL_ENGINE'),
-        # 'NAME': config('MYSQL_DB'),
-        # 'USER': config('MYSQL_USER'),
-        # 'PASSWORD': config('MYSQL_PASSWORD'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': config('MYSQL_ENGINE'),
+        'NAME': config('MYSQL_DB'),
+        'USER': config('MYSQL_USER'),
+        'PASSWORD': config('MYSQL_PASSWORD'),
     }
 }
 

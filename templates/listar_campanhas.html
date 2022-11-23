@@ -21,6 +21,7 @@ Campanhas {{ status }}
                     {% if campanha.data_final == None %}
                     <p class="card-text bg-success text-white rounded">Campanha Ativa</p>
                     {% if request.user == campanha.username %}
+                    <a href="{% url 'alterar_campanha' campanha.id %}" class="btn btn-dark mt-2 mb-2">Alterar Campanha</a>
                     <a href="{% url 'encerrar_ativas' campanha.id %}" class="btn btn-danger">Encerrar Campanha</a>
                     {% endif %}
                     {% else %}

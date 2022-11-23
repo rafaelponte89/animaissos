@@ -94,9 +94,10 @@
                         <a class="dropdown-item text-center" href="{% url 'login' %}">Entrar</a>
                     </div>
                 </li>
-                <!-- <li class="nav-item">
-                    <a href="{% url 'register' %}" class="nav-link">Registro</a>
-                </li>                 -->
+                <li class="nav-item">
+                    <a class="nav-link text-center" href="https://docs.google.com/forms/d/e/1FAIpQLSexkMXC2VWh2j00YXNdesDfuR_QoIGL_zeP3fim1CZhg9m7Lw/viewform">Opiniões e Sugestões <span
+                            class="sr-only">(current)</span></a>
+                </li>
                 {% endif %}
 
 
@@ -137,7 +138,7 @@
     {% endif %}
 
 
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
     {% block script_footer %}
