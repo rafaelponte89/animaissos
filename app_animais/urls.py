@@ -26,7 +26,7 @@ urlpatterns = [
     path('campanha/listar/', getCampanhas, name='listar_campanhas'),
     path('campanha/ativa/', getCampanhasAtivas, name='listar_ativas'),
     path('campanha/ativa/<int:pk>', alterarCampanha, name='alterar_campanha'),
-    path('campanha/ativa/<int:pk>', encerrarCampanha, name='encerrar_ativas'),
+    path('campanha/ativa/<int:pk>/encerrar', encerrarCampanha, name='encerrar_ativas'),
 
     path('campanha/encerrada/', getCampanhasEncerradas, name='listar_encerradas'),
 

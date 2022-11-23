@@ -63,7 +63,10 @@ def alterarCampanha(request, pk):
     animal = campanha.animal
     
     if request.method == 'POST':
+
+
         form_campanha = CampaignRegisterForm(request.POST, instance=campanha)
+        
 
         if form_campanha.is_valid():
             form_campanha.save()
