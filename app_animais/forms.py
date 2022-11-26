@@ -10,8 +10,8 @@ from api_animais.models import Usuario
 
 
 class RegisterForm(UserCreationForm):
-    first_name = forms.CharField(max_length=50, required=True,)
-    last_name = forms.CharField(max_length=50, required=True, )
+    first_name = forms.CharField(max_length=50, required=True, label='Nome')
+    last_name = forms.CharField(max_length=50, required=True, label='Sobrenome')
     email = forms.EmailField(required=True)
 
     class Meta:
@@ -67,8 +67,8 @@ class PortoSeguroForm(forms.ModelForm):
         ('N', 'NÃO')
     )
 
-    latitude = forms.FloatField(required=True)
-    longitude = forms.FloatField(required=True)
+    latitude = forms.FloatField(required=True, widget=forms.HiddenInput())
+    longitude = forms.FloatField(required=True, widget=forms.HiddenInput())
     titulo = forms.CharField(max_length=100, required=True)
     casa = forms.SelectMultiple(choices=DISPONIVEL)
     protetor = forms.SelectMultiple(choices=DISPONIVEL)
