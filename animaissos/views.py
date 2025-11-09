@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from api_animais.models import Campanha, Animal
+from django.shortcuts import redirect
+from django.contrib.auth import logout
 
 
 def index(request):
@@ -14,3 +16,7 @@ def index(request):
 
     return render(request, 'listar_campanhas.html', {'campanhas':campanhas})
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')

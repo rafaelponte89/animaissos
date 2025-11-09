@@ -23,6 +23,10 @@ from rest_framework.schemas import get_schema_view
 from animaissos.settings import MEDIA_URL
 from app_animais.views import getCampanhasAtivas
 from .views import index
+from django.contrib.auth.views import LogoutView
+
+from animaissos.views import logout_view
+
 
 schema_url_patterns = [
     path('api/v1/', include('api_animais.urls')),
@@ -31,6 +35,7 @@ schema_url_patterns = [
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('logout/', logout_view, name='logout'),
     path('', include('app_animais.urls')),
     path('api/v1/', include('api_animais.urls')),
     path('api-auth/', include('rest_framework.urls')),

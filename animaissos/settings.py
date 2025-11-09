@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'crispy_forms',
+    'crispy_bootstrap4',
 
     # local
     'api_animais',  
@@ -161,5 +162,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'index'
 LOGIN_REDIRECT = 'login'
+
 STATIC_ROOT = 'src'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
