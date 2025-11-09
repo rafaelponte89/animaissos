@@ -1,7 +1,8 @@
 # 🐾 Animais SOS
 
-**Animais SOS** é uma plataforma web desenvolvida com **Django** e **Django REST Framework** que conecta pessoas que desejam ajudar animais em situação de abandono. O sistema permite buscar campanhas e animais cadastrados, visualizar localizações no mapa e registrar informações sobre animais em situação de vulnerabilidade. Foi um dos projetos integradores desenvovidos no curso de Engenharia da Computação.
+**Animais SOS** é uma plataforma web desenvolvida com **Django** e **Django REST Framework** que conecta pessoas que desejam ajudar animais em situação de abandono. O sistema permite buscar campanhas e animais cadastrados, visualizar localizações no mapa e registrar informações sobre animais em situação de vulnerabilidade.
 
+> ⚡ Este projeto foi desenvolvido durante o curso de **Engenharia da Computação** como um dos projetos integradores do curso.
 
 ---
 
@@ -27,20 +28,20 @@
 - 🌐 **API**: Django REST Framework  
 - 📄 **Documentação da API**: Swagger (OpenAPI)  
 - 🖌 **Frontend**: Templates Django com mapas interativos  
-- 💾 **Banco de dados**: (ex: PostgreSQL, SQLite)  
+- 💾 **Banco de dados**: (ex: PostgreSQL, SQLite)
 
 ---
 
-## Documentação da API
+## 📚 Documentação da API
 
-A API do projeto está documentada com **Swagger**, permitindo consultar endpoints, enviar requisições e testar funcionalidades diretamente pelo navegador.
-Para acessar a documentação, acesse:  
+A API do projeto está documentada com **Swagger**, permitindo consultar endpoints, enviar requisições e testar funcionalidades diretamente pelo navegador.  
+Para acessar a documentação:  
 `/swagger/`  
 Exemplo: `http://localhost:8000/swagger-ui/`
 
 ---
 
-## Instalação e execução
+## ⚡ Instalação e execução
 
 1. Clone o repositório:
 ```bash
@@ -79,33 +80,26 @@ python manage.py runserver
 
 ---
 
-## Uso
+## 🎮 Uso
 
-- Acesse o sistema em: `http://localhost:8000/`
-- Para registrar um usuário, clique em **Cadastrar**.
+- Acesse o sistema em: `http://localhost:8000/`  
+- Para registrar um usuário, clique em **Cadastrar**.  
 - Após o login, você poderá:
-  - Cadastrar animais.
-  - Criar campanhas.
-  - Indicar pontos de abandono no mapa.
+  - 🐾 Cadastrar animais
+  - 📢 Criar campanhas
+  - 📍 Indicar pontos de abandono no mapa
 
 ---
 
-## Vídeo demonstrativo
+## 🎥 Vídeo demonstrativo
 
-Você pode incorporar um vídeo com som no README usando HTML. Exemplo:
+[![Assista ao vídeo](https://img.youtube.com/vi/sBnL5fRYNjQ/0.jpg)](https://www.youtube.com/watch?v=sBnL5fRYNjQ)
 
-```html
-<video width="600" controls>
-  <source src="https://www.youtube.com/watch?v=sBnL5fRYNjQ" type="video/mp4">
-  Seu navegador não suporta o elemento de vídeo.
-</video>
-```
-
-> **Dica:** Para GitHub, é recomendável hospedar o vídeo externamente (YouTube, Google Drive público ou servidor próprio). Você também pode adicionar um GIF animado como alternativa para visualização direta no README.
+> 💡 **Dica:** Clique na imagem para assistir ao vídeo no YouTube.
 
 ---
 
-## Estrutura do projeto
+## 🗂 Estrutura do projeto
 
 ```
 ANIMAISSOS/
@@ -129,19 +123,19 @@ ANIMAISSOS/
 
 ---
 
-## Contribuição
+## 🤝 Contribuição
 
-Contribuições são bem-vindas!
+Contribuições são bem-vindas!  
 
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b minha-feature`)
-3. Faça commit das mudanças (`git commit -m 'Adiciona nova feature'`)
-4. Envie para o repositório remoto (`git push origin minha-feature`)
+1. Fork o projeto  
+2. Crie uma branch para sua feature (`git checkout -b minha-feature`)  
+3. Faça commit das mudanças (`git commit -m 'Adiciona nova feature'`)  
+4. Envie para o repositório remoto (`git push origin minha-feature`)  
 5. Abra um Pull Request
 
 ---
 
-## Licença
+## 📄 Licença
 
 Este projeto está licenciado sob a **MIT License**.
 
